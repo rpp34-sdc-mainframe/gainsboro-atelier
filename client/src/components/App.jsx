@@ -25,7 +25,7 @@ class App extends React.Component {
       relatedProducts: [],
       sort: 'relevant',
       meta: {},
-      product_id: 64620,
+      product_id: 65233,
       outfitList: [],
     }
 
@@ -56,27 +56,27 @@ class App extends React.Component {
   }
 
   fetchDataFromAPI() {
-    axios(`/overview/${this.state.product_id}`)
-    .then(({data})=>{
+    // axios(`/overview/${this.state.product_id}`)
+    // .then(({data})=>{
 
-      let defaultIndex;
-      for (var i = 0; i < data.styleData.length; i++){
-        if (data.styleData[i]['default?']){
-          defaultIndex = i;
-          break;
-        }
-      }
-      defaultIndex = defaultIndex || 0;
-      this.setState({
-        currentStyle: defaultIndex,
-        overview: data
-      })
-    });
+    //   let defaultIndex;
+    //   for (var i = 0; i < data.styleData.length; i++){
+    //     if (data.styleData[i]['default?']){
+    //       defaultIndex = i;
+    //       break;
+    //     }
+    //   }
+    //   defaultIndex = defaultIndex || 0;
+    //   this.setState({
+    //     currentStyle: defaultIndex,
+    //     overview: data
+    //   })
+    // });
 
-    axios.get(`/products/${this.state.product_id}/related`)
-    .then(({data}) => {
-      this.setState({relatedProducts: data})
-    });
+    // axios.get(`/products/${this.state.product_id}/related`)
+    // .then(({data}) => {
+    //   this.setState({relatedProducts: data})
+    // });
 
     axios.get(`/reviews?product_id=${this.state.product_id}&sort=${this.state.sort}&count=500`)
     .then(data => {
@@ -161,7 +161,7 @@ class App extends React.Component {
     return (
       <>
         <GlobalStyle />
-        {Object.keys(this.state.overview).length > 0 &&
+        {/* {Object.keys(this.state.overview).length > 0 &&
           <Overview
           addOutfit={this.handleAddToOutfitClick}
           changeStyle={this.changeStyle}
@@ -172,18 +172,18 @@ class App extends React.Component {
           removeOutfit={this.handleRemoveOutfitFromListClick}
           addedOutfit={this.state.addedOutfit}
           />
-        }
-        <RelatedAndOutfits
+        } */}
+        {/* <RelatedAndOutfits
           relatedProducts={this.state.relatedProducts}
           currProduct={this.state.overview}
           outfitList={this.state.outfitList}
           handleAddToOutfitClick={this.handleAddToOutfitClick}
           handleRemoveOutfitFromListClick={this.handleRemoveOutfitFromListClick}
-        />
-        {this.state.product_id !== 0 ? <QuestionAnswer
+        /> */}
+        {/* {this.state.product_id !== 0 ? <QuestionAnswer
           productId={this.state.product_id}
           overview={this.state.overview}
-        /> : null}
+        /> : null} */}
         <ReviewAndRating
           product_id={this.state.product_id}
           productName={this.state.overview.name}

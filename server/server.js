@@ -13,7 +13,8 @@ const jsonParser = bodyParser.json();
 
 const app = express();
 const PORT = 3000;
-const apiHost = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+// const apiHost = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+const apiHost = 'http://localhost:8000';
 
 // compress all requests
 app.use(compression());
@@ -119,7 +120,9 @@ app.get('/products/:product_id/related', (req, res) => {
 
 app.get('/reviews', (req, res) => {
   var {product_id, sort, count} = req.query;
+  console.log(req.query)
   var url = `${apiHost}/reviews?product_id=${product_id}&sort=${sort}&count=${count}`;
+  console.log(url)
   axios.get(url, options)
   .then(data => {
     res.send(data.data.results)
